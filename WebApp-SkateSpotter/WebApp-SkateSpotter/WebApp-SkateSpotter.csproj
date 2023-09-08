@@ -7,4 +7,8 @@
     <RootNamespace>WebApp_SkateSpotter</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
 </Project>

@@ -2,3 +2,8 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+var map;
+function loadMapScenario() {
+    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+}

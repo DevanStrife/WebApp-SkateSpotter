@@ -6,9 +6,20 @@
     <title>@ViewData["Title"] - SkateSpotter</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebApp_SkateSpotter.styles.css" asp-append-version="true" />
+
+    @* TomTom API *@
+    @* <link href="~/lib/tomtom-international/web-sdk-maps/dist/maps.css" rel="stylesheet"?/> *@
+
+    @* bing maps api *@
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?setmkt=en-us&key=Amcu1rBRxXcBBsLcKr14p3gb51i8PqlTn16iIjhki_AjKujeZfYtg1KjJTbzJerx'></script>
+    <script type='text/javascript'>
+        var map;
+        function loadMapScenario() {
+            map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+        }
+    </script>
 </head>
-<body>
+<body onload='loadMapScenario();'>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
@@ -34,13 +45,51 @@
     </header>
     <div class="sidenav">
         <p> Saved spots </p>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+        <a href="#">Skate spot 1</a>
+        <a class="spot_category"> category</a>
+        <a class="spot_description"> description</a>
+        <a href="#">Skate spot 2</a>
+        <a class="spot_category"> category</a>
+        <a class="spot_description"> description</a>
+        <a href="#">Skate spot 3</a>
+        <a class="spot_category"> category</a>
+        <a class="spot_description"> description</a>
+        <a href="#">Skate spot 4</a>
+        <a class="spot_category"> category</a>
+        <a class="spot_description"> description</a>
     </div>
 
-    <div class="map"> <img src="~/img/map.png" width="1180" height="650"/></div>
+@*     <div class="map"> <img src="~/img/map.png" width="1180" height="650"/></div>*@
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <div id='printoutPanel'></div>
+
+    <div id='myMap' style='width: 80vw; height: 85vh;'></div>
+
+@*     <script src="~/lib/tomtom-international/web-sdk-maps/dist/maps-web.min.js"></script>
+
+    <div id="map" class="map"></div>
+
+@section Scripts {
+    <script>
+        let map;
+        map = tt.map({
+            key: 'oA6apNuzdSmza33NPY0S9JgG2wa87gbx',
+            container: 'map',
+            style: 'tomtom://vector/1/basic-main',
+            center: [0, 40],
+            zoom: 15
+        });
+        <div>
+        <p>SkateSpotter</p>
+        </div>
+    </script>
+ *@
+
+    
 
     <footer class="border-top footer text-muted">
         <div class="container">
@@ -51,7 +100,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @RenderBody()
     @await RenderSectionAsync("Scripts", required: false)
 </body>

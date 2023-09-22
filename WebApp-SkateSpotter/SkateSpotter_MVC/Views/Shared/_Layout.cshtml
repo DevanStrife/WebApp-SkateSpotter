@@ -20,13 +20,13 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item-left">
-                            <a class="nav-link text-dark" asp-area=""  asp-page="/Index">SkateSpotter</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">SkateSpotter</a>
                         </li>
                         <li class="nav-item-left">
                             <input type="text" placeholder="Search.." />
                         </li>
                         <li class="nav-item-right">
-                            <a href="@Url.Action("Index", "Account") title="Account">
+                            <a href="@Url.Action("Index", "Account")">
                                 <img src="~/img/user.png" width="20" height="20" />
                                 Account
                             </a>
@@ -45,7 +45,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - SkateSpotter_MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - SkateSpotter - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

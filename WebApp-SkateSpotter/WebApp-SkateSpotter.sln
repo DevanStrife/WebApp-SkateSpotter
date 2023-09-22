@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp-SkateSpotter", "WebApp-SkateSpotter\WebApp-SkateSpotter.csproj", "{7CC17224-648B-40F6-9674-E17CB1402F68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkateSpotter_MVC", "SkateSpotter_MVC\SkateSpotter_MVC.csproj", "{43DB1555-76F2-4A97-83D8-6458BC2421D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7CC17224-648B-40F6-9674-E17CB1402F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7CC17224-648B-40F6-9674-E17CB1402F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7CC17224-648B-40F6-9674-E17CB1402F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7CC17224-648B-40F6-9674-E17CB1402F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43DB1555-76F2-4A97-83D8-6458BC2421D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43DB1555-76F2-4A97-83D8-6458BC2421D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43DB1555-76F2-4A97-83D8-6458BC2421D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43DB1555-76F2-4A97-83D8-6458BC2421D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -8,16 +8,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 @*  <link rel="stylesheet" href="~/SkateSpotter_MVC.styles.css" asp-append-version="true" /> *@
 
-    @* bing maps api *@
-    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?setmkt=en-us&key=Amcu1rBRxXcBBsLcKr14p3gb51i8PqlTn16iIjhki_AjKujeZfYtg1KjJTbzJerx'></script>
-    <script type='text/javascript'>
-        var map;
-        function loadMapScenario() {
-            map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
-        }
-    </script>
 </head>
-<body onload="loadMapScenario();">
+<body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
@@ -28,39 +20,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item-left">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">SkateSpotter</a>
+                            <a class="nav-link text-dark" asp-area=""  asp-page="/Index">SkateSpotter</a>
                         </li>
                         <li class="nav-item-left">
                             <input type="text" placeholder="Search.." />
                         </li>
                         <li class="nav-item-right">
-                            <p>Account <img src="~/img/user.png" width="20" height="20" /></p>
+                            <a href="@Url.Action("Index", "Account") title="Account">
+                                <img src="~/img/user.png" width="20" height="20" />
+                                Account
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
-    <div class="sidenav">
-        <p> Saved spots </p>
-        <a href="#">Skate spot 1</a>
-        <a class="spot_category"> category</a>
-        <a class="spot_description"> description</a>
-        <a href="#">Skate spot 2</a>
-        <a class="spot_category"> category</a>
-        <a class="spot_description"> description</a>
-        <a href="#">Skate spot 3</a>
-        <a class="spot_category"> category</a>
-        <a class="spot_description"> description</a>
-        <a href="#">Skate spot 4</a>
-        <a class="spot_category"> category</a>
-        <a class="spot_description"> description</a>
-    </div>
-
-    <div id='printoutPanel'></div>
-
-    <div id='myMap'></div>
 
     <div class="container">
         <main role="main" class="pb-3">

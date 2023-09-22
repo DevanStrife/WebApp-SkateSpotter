@@ -2,3 +2,35 @@
     ViewData["Title"] = "Home Page";
 }
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+@* bing maps api *@
+<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?setmkt=en-us&key=Amcu1rBRxXcBBsLcKr14p3gb51i8PqlTn16iIjhki_AjKujeZfYtg1KjJTbzJerx'></script>
+<script type='text/javascript'>
+    var map;
+    function loadMapScenario() {
+        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+    }
+</script>
+<body onload='loadMapScenario();'>
+    <div class="sidenav">
+        <p> Saved spots </p>
+        <a href="#">Skate spot 1</a>
+        <a class="spot_category"> category</a>
+        <a class="spot_description"> description</a>
+        <a href="#">Skate spot 2</a>
+        <a class="spot_category"> category</a>
+        <a class="spot_description"> description</a>
+        <a href="#">Skate spot 3</a>
+        <a class="spot_category"> category</a>
+        <a class="spot_description"> description</a>
+        <a href="#">Skate spot 4</a>
+        <a class="spot_category"> category</a>
+        <a class="spot_description"> description</a>
+    </div>
+
+    <div id='printoutPanel'></div>
+
+    <div id='myMap'></div>
+</body>

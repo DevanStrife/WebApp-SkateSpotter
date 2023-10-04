@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SkateSpotter_MVC.Data;
+using SkateSpotter_MVC.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +11,14 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDBContext>();
+builder.Services.AddDbContext<SkateSpotter_IdentityDbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<SkateSpotter_IdentityDbContext>();
+
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkateSpotter_MVC.Data;
 
@@ -11,9 +12,11 @@ using SkateSpotter_MVC.Data;
 namespace SkateSpotter_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231004105109_StoreUpdate1")]
+    partial class StoreUpdate1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,58 +24,6 @@ namespace SkateSpotter_MVC.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IdentityUser");
-                });
 
             modelBuilder.Entity("SkateSpotter_MVC.Models.Skater", b =>
                 {
@@ -129,7 +80,7 @@ namespace SkateSpotter_MVC.Migrations
                     b.ToTable("Spots");
                 });
 
-            modelBuilder.Entity("SkateSpotter_MVC.Models.Stores", b =>
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Store", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -149,33 +100,13 @@ namespace SkateSpotter_MVC.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("OwnerId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OwnerId1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Website")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("OwnerId1");
 
                     b.ToTable("Stores");
                 });
@@ -187,15 +118,6 @@ namespace SkateSpotter_MVC.Migrations
                         .HasForeignKey("SkaterId");
 
                     b.Navigation("Skaters");
-                });
-
-            modelBuilder.Entity("SkateSpotter_MVC.Models.Stores", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId1");
-
-                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("SkateSpotter_MVC.Models.Skater", b =>

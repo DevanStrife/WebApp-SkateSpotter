@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkateSpotter_MVC.Data;
 
@@ -11,9 +12,11 @@ using SkateSpotter_MVC.Data;
 namespace SkateSpotter_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231004101548_StoreInit")]
+    partial class StoreInit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,7 +132,7 @@ namespace SkateSpotter_MVC.Migrations
                     b.ToTable("Spots");
                 });
 
-            modelBuilder.Entity("SkateSpotter_MVC.Models.Stores", b =>
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Store", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,16 +143,7 @@ namespace SkateSpotter_MVC.Migrations
                     b.Property<string>("Adress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -161,17 +155,11 @@ namespace SkateSpotter_MVC.Migrations
                     b.Property<string>("OwnerId1")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("x_cord")
+                        .HasColumnType("real");
 
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Website")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("y_cord")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -189,7 +177,7 @@ namespace SkateSpotter_MVC.Migrations
                     b.Navigation("Skaters");
                 });
 
-            modelBuilder.Entity("SkateSpotter_MVC.Models.Stores", b =>
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Store", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Owner")
                         .WithMany()

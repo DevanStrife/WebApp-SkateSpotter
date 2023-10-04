@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkateSpotter_MVC.Data;
 
@@ -11,9 +12,11 @@ using SkateSpotter_MVC.Data;
 namespace SkateSpotter_MVC.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231004122908_BrandInit")]
+    partial class BrandInit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,7 +132,7 @@ namespace SkateSpotter_MVC.Migrations
                     b.ToTable("Spots");
                 });
 
-            modelBuilder.Entity("SkateSpotter_MVC.Models.Stores", b =>
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Store", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -177,7 +180,7 @@ namespace SkateSpotter_MVC.Migrations
 
                     b.HasIndex("OwnerId1");
 
-                    b.ToTable("Stores");
+                    b.ToTable("Store");
                 });
 
             modelBuilder.Entity("SkateSpotter_MVC.Models.Spot", b =>
@@ -189,7 +192,7 @@ namespace SkateSpotter_MVC.Migrations
                     b.Navigation("Skaters");
                 });
 
-            modelBuilder.Entity("SkateSpotter_MVC.Models.Stores", b =>
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Store", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Owner")
                         .WithMany()

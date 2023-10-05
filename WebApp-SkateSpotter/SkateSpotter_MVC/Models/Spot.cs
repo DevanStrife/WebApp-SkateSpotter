@@ -15,7 +15,6 @@ namespace SkateSpotter_MVC.Models
 
         // foreign key
         public virtual IdentityUser? Skaters { get; set; }
-        public int? SkaterId { get; set; }
 
     }
 }

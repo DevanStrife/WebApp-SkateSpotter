@@ -22,7 +22,7 @@ public class SkateSpotter_IdentityDbContext : IdentityDbContext<IdentityUser>
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=DS-Asus-Laptop\\SQLEXPRESS;Database=SkateSpotter;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
+        optionsBuilder.UseSqlServer("Server=DS-Asus-Laptop\\SQLEXPRESS;Database=SkateSpotter_PI4;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
         base.OnConfiguring(optionsBuilder);
     }
 }

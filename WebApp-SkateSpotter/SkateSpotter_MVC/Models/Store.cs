@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SkateSpotter_MVC.Models
 {
-    public class Stores
+    public class Store
     {
         [Key]
         public int Id { get; set; }
@@ -22,6 +22,5 @@ namespace SkateSpotter_MVC.Models
         public virtual int? OwnerId { get; set; }
 
         public ICollection<Brand>? Brands { get; set; }
-        public ICollection<int>? BrandId { get; set; }
     }
 }

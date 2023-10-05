@@ -22,12 +22,45 @@ namespace SkateSpotter_MVC.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("BrandCategory", b =>
+                {
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BrandId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("BrandCategory");
+                });
+
+            modelBuilder.Entity("BrandStore", b =>
+                {
+                    b.Property<int>("BrandsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StoresId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BrandsId", "StoresId");
+
+                    b.HasIndex("StoresId");
+
+                    b.ToTable("BrandStore");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -71,7 +104,50 @@ namespace SkateSpotter_MVC.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandId");
+
                     b.ToTable("IdentityUser");
+                });
+
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("NumberOfFavourites")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("SkateSpotter_MVC.Models.Skater", b =>
@@ -116,6 +192,9 @@ namespace SkateSpotter_MVC.Migrations
                     b.Property<int?>("SkaterId")
                         .HasColumnType("int");
 
+                    b.Property<string>("SkatersId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<float>("x_cord")
                         .HasColumnType("real");
 
@@ -126,10 +205,12 @@ namespace SkateSpotter_MVC.Migrations
 
                     b.HasIndex("SkaterId");
 
+                    b.HasIndex("SkatersId");
+
                     b.ToTable("Spots");
                 });
 
-            modelBuilder.Entity("SkateSpotter_MVC.Models.Stores", b =>
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Store", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -180,22 +261,68 @@ namespace SkateSpotter_MVC.Migrations
                     b.ToTable("Stores");
                 });
 
+            modelBuilder.Entity("BrandCategory", b =>
+                {
+                    b.HasOne("SkateSpotter_MVC.Models.Brand", null)
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkateSpotter_MVC.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BrandStore", b =>
+                {
+                    b.HasOne("SkateSpotter_MVC.Models.Brand", null)
+                        .WithMany()
+                        .HasForeignKey("BrandsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkateSpotter_MVC.Models.Store", null)
+                        .WithMany()
+                        .HasForeignKey("StoresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.HasOne("SkateSpotter_MVC.Models.Brand", null)
+                        .WithMany("Fan")
+                        .HasForeignKey("BrandId");
+                });
+
             modelBuilder.Entity("SkateSpotter_MVC.Models.Spot", b =>
                 {
-                    b.HasOne("SkateSpotter_MVC.Models.Skater", "Skaters")
+                    b.HasOne("SkateSpotter_MVC.Models.Skater", null)
                         .WithMany("Spots")
                         .HasForeignKey("SkaterId");
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Skaters")
+                        .WithMany()
+                        .HasForeignKey("SkatersId");
 
                     b.Navigation("Skaters");
                 });
 
-            modelBuilder.Entity("SkateSpotter_MVC.Models.Stores", b =>
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Store", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId1");
 
                     b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("SkateSpotter_MVC.Models.Brand", b =>
+                {
+                    b.Navigation("Fan");
                 });
 
             modelBuilder.Entity("SkateSpotter_MVC.Models.Skater", b =>

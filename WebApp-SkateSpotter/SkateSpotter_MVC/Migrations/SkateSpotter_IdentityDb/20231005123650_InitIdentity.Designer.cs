@@ -12,8 +12,8 @@ using SkateSpotter_MVC.Areas.Identity.Data;
 namespace SkateSpotter_MVC.Migrations.SkateSpotter_IdentityDb
 {
     [DbContext(typeof(SkateSpotter_IdentityDbContext))]
-    [Migration("20231004091714_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [Migration("20231005123650_InitIdentity")]
+    partial class InitIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -170,10 +170,12 @@ namespace SkateSpotter_MVC.Migrations.SkateSpotter_IdentityDb
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -210,10 +212,12 @@ namespace SkateSpotter_MVC.Migrations.SkateSpotter_IdentityDb
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");

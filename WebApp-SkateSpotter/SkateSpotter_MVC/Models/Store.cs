@@ -22,5 +22,6 @@ namespace SkateSpotter_MVC.Models
         public virtual int? OwnerId { get; set; }
 
         public virtual ICollection<Brand>? Brands { get; set; }
+
     }
 }

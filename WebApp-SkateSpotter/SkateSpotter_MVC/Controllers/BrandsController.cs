@@ -159,5 +159,55 @@ namespace SkateSpotter_MVC.Controllers
         {
           return (_context.Brands?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        public async Task<IActionResult> Favourite(int? id)
+        {
+            if (id == null || _context.Brands == null)
+            {
+                return NotFound();
+            }
+
+            var brand = await _context.Brands
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (brand == null)
+            {
+                return NotFound();
+            }
+            
+            brand.NumberOfFavourites++;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> GetStoreBrands(int? StoreId)
+        {
+            /*if (id == null || _context.Stores == null)
+            {
+                return NotFound();
+            }
+
+            var store = await _context.Stores
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (store == null)
+            {
+                return NotFound();
+            }
+            
+            return View(store.Brands);*/
+
+            var store = await _context.Stores
+                .Include(s => s.Brands)
+                .FirstOrDefaultAsync(m => m.Id == StoreId);
+
+            if (store == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View("StoreBrands", store.Brands);
+            }
+            
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace SkateSpotter_MVC.Data
         public DbSet<Store> Stores { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         // constructor
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)

@@ -7,12 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SkateSpotter_MVC.Data;
 using SkateSpotter_MVC.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using SkateSpotter_MVC.Areas.Identity.Data;
 
 namespace SkateSpotter_MVC.Controllers
 {
     public class BrandsController : Controller
     {
         private readonly ApplicationDBContext _context;
+        private readonly UserManager<SkateSpotter_IdentityDbContext> _userManager;
 
         public BrandsController(ApplicationDBContext context)
         {
@@ -160,44 +164,33 @@ namespace SkateSpotter_MVC.Controllers
           return (_context.Brands?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        public async Task<IActionResult> Favourite(int? id)
+        public async Task<IActionResult> FavBrand(int? brandId)
         {
-            if (id == null || _context.Brands == null)
+            if (!User.Identity.IsAuthenticated)
             {
-                return NotFound();
+                return RedirectToAction("Login", "Account");
             }
 
-            var brand = await _context.Brands
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (brand == null)
+            var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var brand = _context.Brands.Find(brandId);
+
+            if (brand != null) 
+            {
+                brand.NumberOfFavourites++;
+                return View(brand);
+            }
+            else
             {
                 return NotFound();
             }
             
-            brand.NumberOfFavourites++;
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> GetStoreBrands(int? StoreId)
+        public async Task<IActionResult> GetStoreBrands(int? storeId)
         {
-            /*if (id == null || _context.Stores == null)
-            {
-                return NotFound();
-            }
-
-            var store = await _context.Stores
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (store == null)
-            {
-                return NotFound();
-            }
-            
-            return View(store.Brands);*/
-
             var store = await _context.Stores
                 .Include(s => s.Brands)
-                .FirstOrDefaultAsync(m => m.Id == StoreId);
+                .FirstOrDefaultAsync(m => m.Id == storeId);
 
             if (store == null)
             {
@@ -207,7 +200,6 @@ namespace SkateSpotter_MVC.Controllers
             {
                 return View("StoreBrands", store.Brands);
             }
-            
         }
     }
 }

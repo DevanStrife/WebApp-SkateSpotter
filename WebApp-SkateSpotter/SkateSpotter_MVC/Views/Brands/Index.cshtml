@@ -1,11 +1,14 @@
-﻿@model IEnumerable<SkateSpotter_MVC.Models.Brand>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<SkateSpotter_MVC.Models.Brand>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Brands</h1>
 
 @* <p>
     <a asp-action="Create">Create New</a>
@@ -47,6 +50,15 @@
                 @* <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 @* <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        @Html.ActionLink("Favourite this brand <3", "FavBrand", "Brands", new {BrandId = item.Id})
+
+                    }
+                    else
+                    {
+                        <a asp-area="Identity" asp-page="/Account/Login">Login to favourite this brand!</a>
+                    }
             </td>
         </tr>
 }

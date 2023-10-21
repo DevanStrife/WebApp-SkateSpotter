@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SkateSpotter</title>
     <link rel="stylesheet" href="~/css/SlateTheme.css" asp-append-version="true" />
+    <link href="~/js/site.js" />
 @*  <link rel="stylesheet" href="~/SkateSpotter_MVC.styles.css" asp-append-version="true" /> *@
 
 </head>
@@ -19,8 +20,8 @@
                             <span class="visually-hidden">(current)</span>
                         </li>
                         <form class="d-flex">
-                            <input class="form-control me-sm-2" type="search" placeholder="Search">
-                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                            <input id="searchTbx" class="form-control me-sm-2" type="text" placeholder="Search">
+                            <input type="button" class="btn btn-secondary my-2 my-sm-0" value="Search" onclick="Search()">
                         </form>
                         <li class="nav-item" style="float: right; position: absolute; right: 50px;">
                             <partial name="_LoginPartial">

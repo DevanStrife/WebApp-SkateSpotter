@@ -4,15 +4,11 @@
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link href="~/js/site.js"/>
 
 @* bing maps api *@
 <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?setmkt=en-us&key=Amcu1rBRxXcBBsLcKr14p3gb51i8PqlTn16iIjhki_AjKujeZfYtg1KjJTbzJerx'></script>
-<script type='text/javascript'>
-    var map;
-    function loadMapScenario() {
-        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
-    }
-</script>
+
 <body onload='loadMapScenario();'>
     <div class="sidenav">
         <p> Saved spots </p>
@@ -33,4 +29,5 @@
     <div id='printoutPanel'></div>
 
     <div id='myMap'></div>
+    <div id="output" style="margin-left:10px;float:left;"></div>
 </body>

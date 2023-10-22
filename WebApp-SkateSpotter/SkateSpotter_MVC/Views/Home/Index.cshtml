@@ -4,33 +4,34 @@
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link href="~/js/site.js"/>
 
 @* bing maps api *@
-<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?setmkt=en-us&key=Amcu1rBRxXcBBsLcKr14p3gb51i8PqlTn16iIjhki_AjKujeZfYtg1KjJTbzJerx'></script>
-<script type='text/javascript'>
-    var map;
-    function loadMapScenario() {
-        map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
-    }
-</script>
-<body onload='loadMapScenario();'>
+<script type='text/javascript'></script>
+
+<body>
     <div class="sidenav">
-        <p> Saved spots </p>
-        <a href="#">Skate spot 1</a>
-        <a class="spot_category"> category</a>
-        <a class="spot_description"> description</a>
-        <a href="#">Skate spot 2</a>
-        <a class="spot_category"> category</a>
-        <a class="spot_description"> description</a>
-        <a href="#">Skate spot 3</a>
-        <a class="spot_category"> category</a>
-        <a class="spot_description"> description</a>
-        <a href="#">Skate spot 4</a>
-        <a class="spot_category"> category</a>
-        <a class="spot_description"> description</a>
+        <p> Click on the map to save your spot! </p>
+        <p> Note: Server Maintenance in progress! Permament saving of spots currently disabled</p>
+
+        <p> Saved spots: </p>
+
+    <ul id="savedSpots">
+        </ul>
+        
     </div>
 
     <div id='printoutPanel'></div>
 
     <div id='myMap'></div>
+    <div id="output" style="margin-left:10px;float:left;"></div>
+    <div id="inputForm" style="display:none;">
+        <table>
+            <tr><td colspan="2"></td></tr>
+            <tr><td>Title</td><td><input id="titleTbx" type="text" /></td></tr>
+            <tr><td>Description</td><td><input id="descriptionTbx" type="text" /></td></tr>
+            <tr><td colspan="2"><input type="button" value="Save" onclick="saveData()" style="float:right;" /></td></tr>
+        </table>
+    </div>
+
 </body>

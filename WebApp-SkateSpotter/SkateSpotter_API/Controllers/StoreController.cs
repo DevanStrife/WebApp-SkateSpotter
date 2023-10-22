@@ -22,6 +22,7 @@ namespace SkateSpotter_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Store>>> GetAll()
         {
+            // Retrieve and return a list of all stores.
             return await _context.Stores
                 .ToListAsync();
         }
@@ -29,6 +30,7 @@ namespace SkateSpotter_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Store>> GetStore(int id)
         {
+            // Find a store by its ID.
             var store = await _context.Stores.FindAsync(id);
 
             if (store == null)
@@ -42,9 +44,10 @@ namespace SkateSpotter_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Store>> PostStore(Store store)
         {
+            // Add the 'store' to the entity set and save changes to the database.
             _context.Stores.Add(store);
             await _context.SaveChangesAsync();
-
+            // Return a CreatedAtAction response with the created store and its ID.
             return CreatedAtAction(
                 nameof(GetStore),
                 new { id = store.Id },
@@ -66,7 +69,7 @@ namespace SkateSpotter_API.Controllers
             {
                 return NotFound();
             }
-
+            // Update the properties of the 'storeToUpdate' with the values from 'store'.
             storeToUpdate.Name = store.Name;
             storeToUpdate.Description = store.Description;
             storeToUpdate.Country = store.Country;
@@ -80,6 +83,7 @@ namespace SkateSpotter_API.Controllers
 
             try
             {
+                // Save changes to the database.
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException) when (!StoreExists(id))
@@ -101,7 +105,7 @@ namespace SkateSpotter_API.Controllers
             {
                 return NotFound();
             }
-
+            // Remove the store from the entity set and save changes to the database.
             _context.Stores.Remove(store);
             await _context.SaveChangesAsync();
 
@@ -110,6 +114,7 @@ namespace SkateSpotter_API.Controllers
 
         private bool StoreExists(int id)
         {
+            // Check if a store with the given ID exists in the entity set.
             return _context.Stores.Any(e => e.Id == id);
         }
 

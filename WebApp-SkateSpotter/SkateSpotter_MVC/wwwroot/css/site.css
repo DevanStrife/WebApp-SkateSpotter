@@ -37,8 +37,20 @@ li {
     }
 
 #myMap {
-    height: 500px;
-    width: 500px;
+    height: 100%;
+    width: 80%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#inputForm {
+    position: absolute;
+    top: 200px;
+    left: 250px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 10px;
 }
 
 footer {
@@ -50,24 +62,27 @@ footer {
 
 /* The sidebar menu */
 .sidenav {
-    height: 650px; /* Full-height: remove this if you want "auto" height */
+    height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 300px; /* Set the width of the sidebar */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
-    left: 0;
+    right: 0;
     background-color: white;
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 25px;
+    padding-top: 100px;
     float: right;
     border: 1px solid black;
+    position: fixed;
+    background: #272b30;
+    color: white;
 }
 
     /* The navigation menu links */
-    .sidenav a {
+    .sidenav ul {
         padding: 6px 8px 6px 16px;
         text-decoration: none;
         font-size: 25px;
-        color: black;
+        color: white;
         display: block;
     }
 

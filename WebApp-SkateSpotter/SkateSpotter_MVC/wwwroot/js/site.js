@@ -134,9 +134,9 @@ function pushpinClicked(e) {
         });
     }
 }
-// Include your script to load the Bing Maps control asynchronously and call the 'GetMap' function.
+/*// Include your script to load the Bing Maps control and call the 'GetMap' function.
 (async () => {
     let script = document.createElement("script");
-    script.setAttribute("src", "https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Amcu1rBRxXcBBsLcKr14p3gb51i8PqlTn16iIjhki_AjKujeZfYtg1KjJTbzJerx");
+    script.setAttribute("src", 'https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Amcu1rBRxXcBBsLcKr14p3gb51i8PqlTn16iIjhki_AjKujeZfYtg1KjJTbzJerx');
     document.body.appendChild(script);
-})();
+})();*/
